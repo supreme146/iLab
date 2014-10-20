@@ -1,15 +1,15 @@
 //
-//  main.c
-//  1
+//  function.c
+//  Project 1.1
 //
-//  Created by Серкин Дмитрий on 14.09.14.
+//  Created by Серкин Дмитрий on 02.10.14.
 //  Copyright (c) 2014 Серкин Дмитрий. All rights reserved.
 //
 
+#include "function.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
 enum input
 {
     input_correct,
@@ -26,7 +26,6 @@ enum answer_count
     two_answers,
     error
 };
-
 
 int input(double* a, double* b, double* c, double* d, int* answer_count)
 {
@@ -53,17 +52,17 @@ int input(double* a, double* b, double* c, double* d, int* answer_count)
         else
         {
             *d = ( (*b) * (*b) ) - (4 * (*a) * (*c));
-        
+            
             if (*d < 0)
             {
                 *answer_count = notreal_answer ;
             }
-        
+            
             if (*d == 0 )
             {
                 *answer_count = one_answer_diskriminant;
             }
-        
+            
             if (*d > 0)
             {
                 *answer_count = two_answers;
@@ -134,19 +133,4 @@ void solvesquare(double* a, double* b, double* c, double* d, double* x1, double*
 }
 
 
-    
-int main()
-{
-    double a =0 , b = 0 , c = 0 , x1 = 0 , x2 = 0 , d = 0;
-    int answer_count = 0;
-    if ( input( &a, &b, &c, &d, &answer_count) == input_correct )
-    {
-        solvesquare( &a, &b, &c, &d, &x1, &x2, &answer_count);
-        output( &answer_count , &x1 , &x2 );
-    }
-    else
-    {
-        output( &answer_count, &x1 , &x2);
-    }
-    return 0;
-}
+
