@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Серкин Дмитрий. All rights reserved.
 //
 
+#include "header.h"
 
 struct List* create_stack( struct List* stack, int first_element, bool* check) // create stack
 {
@@ -19,7 +20,7 @@ struct List* create_stack( struct List* stack, int first_element, bool* check) /
         struct List* stack = (struct List*) calloc ( 1, sizeof(struct List));
         stack->value = first_element;
         stack->next = NULL;
-        check = true;
+        *check = true;
         return stack;
     }
 };
@@ -28,36 +29,37 @@ struct List* create_stack( struct List* stack, int first_element, bool* check) /
 struct List* push( struct List* stack, int new_element, bool* check) // new element
 {
     struct List* temp = stack;
-    if ( stack = ( struct List* ) calloc ( 1, sizeof ( struct List ) ) ) != NULL )
+    
+    stack = ( struct List* ) calloc ( 1, sizeof ( struct List ) );
+        
+    if ( stack != NULL )
     {
         stack->value = new_element;
         stack->next = temp;
-        check = true;
+        *check = true;
         return stack;
     }
     else
     {
-        check = false;
+        *check = false;
         return stack;
     }
 };
 
 
-int pop( struct List* stack, bool check ) // delete top element
+int pop( struct List** stack) // delete top element
 {
-    if ( empty_stack (stack) )
+    if ( empty_stack (*stack) )
         {
-            return 666;
-            check = false;
+            return -2147483648;
         }
     else
         {
             int copy;
-            struct List* temp = stack;
-            copy = stack->value;
-            stack = stack->next;
+            struct List* temp = *stack;
+            copy = (*stack)->value;
+            *stack = (*stack)->next;
             free( temp );
-            check = true;
             return copy;
         }
 }
