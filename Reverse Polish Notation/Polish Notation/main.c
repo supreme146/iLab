@@ -25,7 +25,7 @@ void main()
            while ( symbol != space )
            {
                value = value * 10;
-               value = value + ( symbol - 48);
+               value = value + ( symbol - '0');
                scanf( "%c", &symbol);
            }
            push( &stack, value);
